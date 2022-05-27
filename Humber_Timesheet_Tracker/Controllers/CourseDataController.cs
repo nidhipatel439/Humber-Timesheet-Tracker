@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -38,36 +39,36 @@ namespace Humber_Timesheet_Tracker.Controllers
         [HttpGet]
         public IHttpActionResult FindCourse(int id)
         {
-            Course Course = db.Courses.Find(id);
-            CourseDto CourseDto = new CourseDto()
+            Course Courses = db.Courses.Find(id);
+            CourseDto CourseDtos = new CourseDto()
             {
-                CourseId = Course.CourseId,
-                CourseName = Course.CourseName
+                CourseId = Courses.CourseId,
+                CourseName = Courses.CourseName
             };
-            if (Course == null)
+            if (Courses == null)
             {
                 return NotFound();
             }
 
-            return Ok(CourseDto);
+            return Ok(CourseDtos);
         }
 
         // POST: api/CourseData/UpdateCourse/5
         [ResponseType(typeof(void))]
         [HttpPost]
-        public IHttpActionResult UpdateCourse(int id, Course course)
+        public IHttpActionResult UpdateCourse(int id, CourseDto Course)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != course.CourseId)
+            if (id != Course.CourseId)
             {
                 return BadRequest();
             }
 
-            db.Entry(course).State = EntityState.Modified;
+            db.Entry(Course).State = EntityState.Modified;
 
             try
             {

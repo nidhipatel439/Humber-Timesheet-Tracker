@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Humber_Timesheet_Tracker.Models.CourseDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<a href="/Course/New">New Course</a>
+<h2>List</h2>
+@foreach(var course in Model)
+ {
+    <h2>Coursename: <a href="/Course/Details/@course.CourseId"> @course.CourseName</a> <br/></h2>
+ }
+
+

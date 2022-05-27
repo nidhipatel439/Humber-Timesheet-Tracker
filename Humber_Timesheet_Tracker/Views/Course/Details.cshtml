@@ -1,0 +1,13 @@
+﻿@model Humber_Timesheet_Tracker.Models.CourseDto
+@{
+    ViewBag.Title = "Details";
+}
+
+<a href="/Course/List">Go back to list</a>
+<br />
+<a href="/Course/Edit/@Model.CourseId">Update</a>
+<br/>
+<a href="/Course/DeleteConfirm/@Model.CourseId">Delete</a>
+<h2>Details</h2>
+<p>Coursename: @Model.CourseName</p>
+

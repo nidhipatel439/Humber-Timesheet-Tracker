@@ -1,0 +1,13 @@
+﻿@model Humber_Timesheet_Tracker.Models.CourseTaskDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this task?</h2>
+<a href="/CourseTask/List">Cancel</a>
+<h3>Taskname: @Model.CourseTaskName</h3>
+<p>Tasktime: @Model.CourseTaskTime</p>
+<form action="/CourseTask/Delete/@Model.CourseTaskId" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>
+

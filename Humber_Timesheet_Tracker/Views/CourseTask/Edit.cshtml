@@ -1,0 +1,14 @@
+﻿@model Humber_Timesheet_Tracker.Models.CourseTaskDto
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update task</h2>
+<form action="/CourseTask/Update/@Model.CourseTaskId" method="Post">
+    <div>
+        <label>Taskname:</label> <input type="text" name="CourseTaskName" value="@Model.CourseTaskName" />
+    </div>
+    <div>
+        <input type="submit" value="Update task" />
+    </div>
+</form>

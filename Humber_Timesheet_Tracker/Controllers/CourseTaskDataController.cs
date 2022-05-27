@@ -24,13 +24,13 @@ namespace Humber_Timesheet_Tracker.Controllers
             List<CourseTask> CourseTasks = db.CourseTasks.ToList();
             List<CourseTaskDto> CourseTaskDtos = new List<CourseTaskDto>();
 
-            CourseTasks.ForEach(a => CourseTaskDtos.Add(new CourseTaskDto(){
+            CourseTasks.ForEach(a => CourseTaskDtos.Add(new CourseTaskDto()
+            {
                 CourseTaskId = a.CourseTaskId,
                 CourseTaskName = a.CourseTaskName,
                 CourseTaskTime = a.CourseTaskTime,
                 CourseName = a.Course.CourseName
             }));
-
             return Ok(CourseTaskDtos);
             
         }
@@ -40,20 +40,20 @@ namespace Humber_Timesheet_Tracker.Controllers
         [HttpGet]
         public IHttpActionResult FindCourseTask(int id)
         {
-            CourseTask CourseTask = db.CourseTasks.Find(id);
-            CourseTaskDto CourseTaskDto = new CourseTaskDto()
+            CourseTask CourseTasks = db.CourseTasks.Find(id);
+            CourseTaskDto CourseTaskDtos = new CourseTaskDto()
             {
-                CourseTaskId = CourseTask.CourseTaskId,
-                CourseTaskName = CourseTask.CourseTaskName,
-                CourseTaskTime = CourseTask.CourseTaskTime,
-                CourseName = CourseTask.Course.CourseName
+                CourseTaskId = CourseTasks.CourseTaskId,
+                CourseTaskName = CourseTasks.CourseTaskName,
+                CourseTaskTime = CourseTasks.CourseTaskTime,
+                CourseName = CourseTasks.Course.CourseName
             };
-            if (CourseTask == null)
+            if (CourseTasks == null)
             {
                 return NotFound();
             }
 
-            return Ok(CourseTaskDto);
+            return Ok(CourseTaskDtos);
         }
 
         // POST: api/CourseTaskData/UpdateCourseTask/5

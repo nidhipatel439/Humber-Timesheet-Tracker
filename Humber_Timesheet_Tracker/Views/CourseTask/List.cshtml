@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Humber_Timesheet_Tracker.Models.CourseTaskDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<a href="/CourseTask/New">New Task</a>
+<h2>List</h2>
+@foreach (var coursetask in Model)
+{
+    <h2>Taskname:<a href="/CourseTask/Details/@coursetask.CourseTaskId"> @coursetask.CourseTaskName</a> <br /></h2>
+    <p>Tasktime: @coursetask.CourseTaskTime</p>
+}
+
+
+
+

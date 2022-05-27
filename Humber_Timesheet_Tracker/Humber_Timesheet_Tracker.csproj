@@ -182,7 +182,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\CourseDataController.cs" />
+    <Compile Include="Controllers\CourseTaskController.cs" />
     <Compile Include="Controllers\CourseTaskDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -216,6 +218,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="jsondata\Course.json" />
+    <None Include="jsondata\CourseTask.json" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -263,6 +266,18 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Course\List.cshtml" />
+    <Content Include="Views\Course\Details.cshtml" />
+    <Content Include="Views\CourseTask\List.cshtml" />
+    <Content Include="Views\CourseTask\Details.cshtml" />
+    <Content Include="Views\CourseTask\New.cshtml" />
+    <Content Include="Views\CourseTask\Error.cshtml" />
+    <Content Include="Views\Course\New.cshtml" />
+    <Content Include="Views\Course\Error.cshtml" />
+    <Content Include="Views\Course\Edit.cshtml" />
+    <Content Include="Views\Course\DeleteConfirm.cshtml" />
+    <Content Include="Views\CourseTask\DeleteConfirm.cshtml" />
+    <Content Include="Views\CourseTask\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

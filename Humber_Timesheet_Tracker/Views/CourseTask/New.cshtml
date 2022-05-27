@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Create Course-Task</h2>
+<form action="/CourseTask/Create" method="Post">
+    <div>
+        <label>Taskname:</label> <input type="text" name="CourseTaskName" />
+    </div>
+    <div>
+        <label>Tasktime:</label> <input type="number" name="CourseTaskTime" />
+    </div>
+    <div>
+        <label>CourseId:</label> <input type="number" name="CourseId" />
+    </div>
+    <div>
+        <input type="submit" value="Add new task" />
+    </div>
+</form>
+

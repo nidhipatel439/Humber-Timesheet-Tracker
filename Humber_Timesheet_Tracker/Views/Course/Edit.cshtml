@@ -1,0 +1,18 @@
+﻿@model Humber_Timesheet_Tracker.Models.CourseDto
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update course</h2>
+<form action="/Course/Update/@Model.CourseId" method="Post">
+    <div>
+        <label>CourseId:</label> <input type="text" name="CourseId" value="@Model.CourseId"  disabled />
+    </div>
+    <div>
+        <label>Coursename:</label> <input type="text" name="CourseName" value="@Model.CourseName"/>
+    </div>
+    <div>
+        <input type="submit" value="Update course" />
+    </div>
+</form>
+
