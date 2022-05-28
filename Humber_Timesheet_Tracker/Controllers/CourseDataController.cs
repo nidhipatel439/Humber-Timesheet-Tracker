@@ -56,19 +56,19 @@ namespace Humber_Timesheet_Tracker.Controllers
         // POST: api/CourseData/UpdateCourse/5
         [ResponseType(typeof(void))]
         [HttpPost]
-        public IHttpActionResult UpdateCourse(int id, CourseDto Course)
+        public IHttpActionResult UpdateCourse(int id, Course course)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != Course.CourseId)
+            if (id != course.CourseId)
             {
                 return BadRequest();
             }
 
-            db.Entry(Course).State = EntityState.Modified;
+            db.Entry(course).State = EntityState.Modified;
 
             try
             {

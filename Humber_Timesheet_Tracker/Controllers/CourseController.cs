@@ -45,6 +45,7 @@ namespace Humber_Timesheet_Tracker.Controllers
             return View(selectedcourse);
         }
 
+        //GET: Course/Error
         public ActionResult Error()
         {
             return View();
@@ -113,6 +114,8 @@ namespace Humber_Timesheet_Tracker.Controllers
         // GET: Course/DeleteConfirm/5
         public ActionResult DeleteConfirm(int id)
         {
+            //curl https://localhost:44375/api/CourseData/FindCourse/{id}
+
             string url = "FindCourse/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             CourseDto selectedcourse = response.Content.ReadAsAsync<CourseDto>().Result;

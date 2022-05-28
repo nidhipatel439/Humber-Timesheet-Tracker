@@ -90,7 +90,9 @@ namespace Humber_Timesheet_Tracker.Controllers
         [HttpPost]
         public ActionResult Update(int id, CourseTask coursetask)
         {
-            string url = "UpdateCourseTask"+id;
+            //curl -d @course.json -H "Content-Type:application/json" https://localhost:44375/api/CourseData/UpdateCourse/{id}
+
+            string url = "UpdateCourseTask/" + id;
 
             string jsonpayload = jss.Serialize(coursetask);
             HttpContent content = new StringContent(jsonpayload);

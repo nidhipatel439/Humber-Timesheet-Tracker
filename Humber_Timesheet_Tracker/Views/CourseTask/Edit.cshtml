@@ -5,6 +5,9 @@
 
 <h2>Update task</h2>
 <form action="/CourseTask/Update/@Model.CourseTaskId" method="Post">
+    <div style="display:none;">
+        <input type="text" name="CourseTaskId" value="@Model.CourseTaskId" />
+    </div>
     <div>
         <label>Taskname:</label> <input type="text" name="CourseTaskName" value="@Model.CourseTaskName" />
     </div>
