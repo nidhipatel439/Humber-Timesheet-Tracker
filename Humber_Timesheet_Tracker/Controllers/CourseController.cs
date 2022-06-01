@@ -49,6 +49,7 @@ namespace Humber_Timesheet_Tracker.Controllers
 
             //showcase information about coursetask related to this course
             url = "CourseTaskData/ListCourseTasksForCourse/" + id;
+            response = client.GetAsync(url).Result;
             IEnumerable<CourseTaskDto> RelatedCourseTasks = response.Content.ReadAsAsync<IEnumerable<CourseTaskDto>>().Result;
 
             ViewModel.RelatedCourseTasks = RelatedCourseTasks;

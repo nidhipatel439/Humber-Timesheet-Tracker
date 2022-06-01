@@ -35,12 +35,12 @@ namespace Humber_Timesheet_Tracker.Controllers
         }
 
         // GET: api/CourseData/FindCourse/5
-        [ResponseType(typeof(Course))]
+        [ResponseType(typeof(CourseDto))]
         [HttpGet]
         public IHttpActionResult FindCourse(int id)
         {
             Course Courses = db.Courses.Find(id);
-            CourseDto CourseDtos = new CourseDto()
+            CourseDto CourseDto = new CourseDto()
             {
                 CourseId = Courses.CourseId,
                 CourseName = Courses.CourseName
@@ -50,7 +50,7 @@ namespace Humber_Timesheet_Tracker.Controllers
                 return NotFound();
             }
 
-            return Ok(CourseDtos);
+            return Ok(CourseDto);
         }
 
         // POST: api/CourseData/UpdateCourse/5

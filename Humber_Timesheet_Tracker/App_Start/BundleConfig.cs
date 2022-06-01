@@ -23,7 +23,7 @@ namespace Humber_Timesheet_Tracker
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap_lux.min.css",
                       "~/Content/site.css"));
         }
     }

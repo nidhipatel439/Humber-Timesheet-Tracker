@@ -1,13 +1,13 @@
-﻿body {
+﻿/*body {
     padding-top: 50px;
     padding-bottom: 20px;
-}
+}*/
 
 /* Set padding to keep content from hitting the edges */
-.body-content {
+/*.body-content {
     padding-left: 15px;
     padding-right: 15px;
-}
+}*/
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -21,4 +21,52 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.table {
+    border: 1px solid #dee2e6;
+}
+.table > thead > tr > th, .table > tbody{
+    border-bottom: 2px solid #000000;
+}
+.table a {
+    background-color: #000033;
+    color: #ffffff;
+}
+.btn:hover, .btn:active:focus, .btn:active {
+    background-color: #cc9900;
+    border-color: #cc9900;
+    box-shadow: none;
+}
+.main {
+    height: 100vh;
+    padding-top: 100px;
+    aspect-ratio: 16/9;
+    background-repeat: no-repeat;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../image/layers.svg);
+}
+footer{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    text-align:center;
+}
+.wrapper{
+    display:flex;
+    justify-content:center;
+    margin-top:50px;
+}
+p{
+    margin:0;
+    padding:inherit;
+}
+.details{
+    width:40%;
+}
+.navbar {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
 }

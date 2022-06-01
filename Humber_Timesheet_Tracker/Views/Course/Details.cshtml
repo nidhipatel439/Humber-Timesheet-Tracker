@@ -12,5 +12,9 @@
 <p>Coursename: @Model.SelectedCourse.CourseName</p>
 
 <div style="margin-top:100px;">
-    <h3>Coursetasks related to </h3>
+    <h3>Coursetasks related to this course</h3>
+    @foreach(var coursetask in Model.RelatedCourseTasks)
+    {
+        <a href="/CourseTask/Details/@coursetask.CourseTaskId">@coursetask.CourseTaskName</a>
+    }
 </div>
