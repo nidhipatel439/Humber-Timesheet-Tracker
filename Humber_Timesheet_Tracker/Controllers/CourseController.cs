@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Humber_Timesheet_Tracker.Models;
+using Humber_Timesheet_Tracker.Models.ViewModels;
 
 namespace Humber_Timesheet_Tracker.Controllers
 {
@@ -18,7 +19,7 @@ namespace Humber_Timesheet_Tracker.Controllers
         static CourseController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44375/api/CourseData/");
+            client.BaseAddress = new Uri("https://localhost:44375/api/");
         }
 
         // GET: Course/List
@@ -26,7 +27,7 @@ namespace Humber_Timesheet_Tracker.Controllers
         {
             //curl https://localhost:44375/api/CourseData/ListCourses
 
-            string url = "ListCourses";
+            string url = "CourseData/ListCourses";
             HttpResponseMessage response = client.GetAsync(url).Result;
             IEnumerable<CourseDto> courses = response.Content.ReadAsAsync<IEnumerable<CourseDto>>().Result;
 
@@ -38,11 +39,20 @@ namespace Humber_Timesheet_Tracker.Controllers
         {
             //curl https://localhost:44375/api/CourseData/FindCourse/{id}
 
-            string url = "FindCourse/" + id;
-            HttpResponseMessage response = client.GetAsync(url).Result;
-            CourseDto selectedcourse = response.Content.ReadAsAsync<CourseDto>().Result;
+            DetailsCourse ViewModel = new DetailsCourse();
 
-            return View(selectedcourse);
+            string url = "CourseData/FindCourse/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            CourseDto SelectedCourse = response.Content.ReadAsAsync<CourseDto>().Result;
+
+            ViewModel.SelectedCourse = SelectedCourse; 
+
+            //showcase information about coursetask related to this course
+            url = "CourseTaskData/ListCourseTasksForCourse/" + id;
+            IEnumerable<CourseTaskDto> RelatedCourseTasks = response.Content.ReadAsAsync<IEnumerable<CourseTaskDto>>().Result;
+
+            ViewModel.RelatedCourseTasks = RelatedCourseTasks;
+            return View(ViewModel);
         }
 
         //GET: Course/Error
@@ -61,7 +71,7 @@ namespace Humber_Timesheet_Tracker.Controllers
         public ActionResult Create(Course course)
         {
             //curl -d @course.json -H "Content-Type:application/json" https://localhost:44375/api/CourseData/AddCourse
-            string url = "AddCourse";
+            string url = "CourseData/AddCourse";
 
             string jsonpayload = jss.Serialize(course);
             HttpContent content = new StringContent(jsonpayload);
@@ -83,7 +93,7 @@ namespace Humber_Timesheet_Tracker.Controllers
         {
             //curl https://localhost:44375/api/CourseData/FindCourse/{id}
 
-            string url = "FindCourse/" + id;
+            string url = "CourseData/FindCourse/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             CourseDto selectedcourse = response.Content.ReadAsAsync<CourseDto>().Result;
             return View(selectedcourse);
@@ -94,7 +104,7 @@ namespace Humber_Timesheet_Tracker.Controllers
         public ActionResult Update(int id, Course course)
         {
             //curl -d @course.json -H "Content-Type:application/json" https://localhost:44375/api/CourseData/UpdateCourse/{id}
-            string url = "UpdateCourse/" + id;
+            string url = "CourseData/UpdateCourse/" + id;
 
             string jsonpayload = jss.Serialize(course);
             HttpContent content = new StringContent(jsonpayload);
@@ -116,7 +126,7 @@ namespace Humber_Timesheet_Tracker.Controllers
         {
             //curl https://localhost:44375/api/CourseData/FindCourse/{id}
 
-            string url = "FindCourse/" + id;
+            string url = "CourseData/FindCourse/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             CourseDto selectedcourse = response.Content.ReadAsAsync<CourseDto>().Result;
             return View(selectedcourse);
@@ -126,7 +136,7 @@ namespace Humber_Timesheet_Tracker.Controllers
         [HttpPost]
         public ActionResult Delete(int id, Course course)
         {
-            string url = "DeleteCourse/" + id;
+            string url = "CourseData/DeleteCourse/" + id;
             string jsonpayload = jss.Serialize(course);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";

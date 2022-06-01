@@ -26,6 +26,8 @@ namespace Humber_Timesheet_Tracker.Models
         public int CourseTaskId { get; set; }
         public string CourseTaskName { get; set; }
         public int CourseTaskTime { get; set; }
+
+        public int CourseId { get; set; }
         public string CourseName { get; set; }
     }
 }

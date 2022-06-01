@@ -29,10 +29,31 @@ namespace Humber_Timesheet_Tracker.Controllers
                 CourseTaskId = a.CourseTaskId,
                 CourseTaskName = a.CourseTaskName,
                 CourseTaskTime = a.CourseTaskTime,
-                CourseName = a.Course.CourseName
+                CourseName = a.Course.CourseName,
+                CourseId = a.Course.CourseId
             }));
             return Ok(CourseTaskDtos);
             
+        }
+
+        // GET: api/CourseTaskData/ListCourseTasksForCourse/{id}
+        [ResponseType(typeof(CourseTaskDto))]
+        [HttpGet]
+        public IHttpActionResult ListCourseTasksForCourse(int id)
+        {
+            List<CourseTask> CourseTasks = db.CourseTasks.Where(a=> a.CourseId==id).ToList();
+            List<CourseTaskDto> CourseTaskDtos = new List<CourseTaskDto>();
+
+            CourseTasks.ForEach(a => CourseTaskDtos.Add(new CourseTaskDto()
+            {
+                CourseTaskId = a.CourseTaskId,
+                CourseTaskName = a.CourseTaskName,
+                CourseTaskTime = a.CourseTaskTime,
+                CourseName = a.Course.CourseName,
+                CourseId = a.Course.CourseId
+            }));
+            return Ok(CourseTaskDtos);
+
         }
 
         // GET: api/CourseTaskData/FindCourseTask/5
@@ -46,7 +67,8 @@ namespace Humber_Timesheet_Tracker.Controllers
                 CourseTaskId = CourseTasks.CourseTaskId,
                 CourseTaskName = CourseTasks.CourseTaskName,
                 CourseTaskTime = CourseTasks.CourseTaskTime,
-                CourseName = CourseTasks.Course.CourseName
+                CourseName = CourseTasks.Course.CourseName,
+                CourseId = CourseTasks.Course.CourseId
             };
             if (CourseTasks == null)
             {

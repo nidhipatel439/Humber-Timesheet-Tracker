@@ -1,13 +1,16 @@
-﻿@model Humber_Timesheet_Tracker.Models.CourseDto
+﻿@model Humber_Timesheet_Tracker.Models.ViewModels.DetailsCourse
 @{
     ViewBag.Title = "Details";
 }
 
 <a href="/Course/List">Go back to list</a>
 <br />
-<a href="/Course/Edit/@Model.CourseId">Update</a>
+<a href="/Course/Edit/@Model.SelectedCourse.CourseId">Update</a>
 <br/>
-<a href="/Course/DeleteConfirm/@Model.CourseId">Delete</a>
-<h2>Details</h2>
-<p>Coursename: @Model.CourseName</p>
+<a href="/Course/DeleteConfirm/@Model.SelectedCourse.CourseId">Delete</a>
+<h2>@Model.SelectedCourse.CourseName</h2>
+<p>Coursename: @Model.SelectedCourse.CourseName</p>
 
+<div style="margin-top:100px;">
+    <h3>Coursetasks related to </h3>
+</div>

@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Humber_Timesheet_Tracker.Models.CourseDto>
 @{
     ViewBag.Title = "New";
 }
@@ -12,7 +12,13 @@
         <label>Tasktime:</label> <input type="number" name="CourseTaskTime" />
     </div>
     <div>
-        <label>CourseId:</label> <input type="number" name="CourseId" />
+        <label>Course:</label>
+        <select name="CourseId">
+            @foreach (var Courses in Model)
+            {
+                <option value="@Courses.CourseId">@Courses.CourseName</option>
+            }
+        </select>
     </div>
     <div>
         <input type="submit" value="Add new task" />

@@ -1,17 +1,31 @@
-﻿@model Humber_Timesheet_Tracker.Models.CourseTaskDto
+﻿@model Humber_Timesheet_Tracker.Models.ViewModels.UpdateCourseTask
+
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Update task</h2>
-<form action="/CourseTask/Update/@Model.CourseTaskId" method="Post">
+<h2>Update Course task</h2>
+<form action="/CourseTask/Update/@Model.SelectedCourseTask.CourseTaskId" method="POST">
     <div style="display:none;">
-        <input type="text" name="CourseTaskId" value="@Model.CourseTaskId" />
+        <input type="text" name="CourseTaskId" value="@Model.SelectedCourseTask.CourseTaskId" />
     </div>
     <div>
-        <label>Taskname:</label> <input type="text" name="CourseTaskName" value="@Model.CourseTaskName" />
+        <label>Name:</label> <input type="text" name="CourseTaskName" value="@Model.SelectedCourseTask.CourseTaskName" />
     </div>
     <div>
-        <input type="submit" value="Update task" />
+        <label>Time:</label> <input type="number" name="CourseTaskTime" value="@Model.SelectedCourseTask.CourseTaskTime" />
+    </div>
+    <div>
+        <label>Course:</label>
+        <select name="CourseId">
+            @foreach (var Courses in Model.CourseOptions)
+            {
+                <option value="@Courses.CourseId">@Courses.CourseName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Update Task" />
+
     </div>
 </form>
