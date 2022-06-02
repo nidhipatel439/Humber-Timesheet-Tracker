@@ -3,9 +3,11 @@
     ViewBag.Title = "DeleteConfirm";
 }
 
-<h2>Are you sure you want to delete this Course?</h2>
-<a href="/Course/List">Cancel</a>
-<h3>Coursename: @Model.CourseName</h3>
-<form action="/Course/Delete/@Model.CourseId" method="POST">
-    <input type="submit" value="Confirm Delete" />
-</form>
+<div id="delete-page">
+    <h2>Are you sure you want to delete this Course?</h2>
+    <h4>Coursename: @Model.CourseName</h4>
+     <form action="/Course/Delete/@Model.CourseId" method="POST">
+        <input type="submit" class="btn btn-outline-primary" value="Confirm Delete" />
+     </form>
+     <a href="/Course/List" class="btn btn-outline-primary">Cancel</a>
+</div>

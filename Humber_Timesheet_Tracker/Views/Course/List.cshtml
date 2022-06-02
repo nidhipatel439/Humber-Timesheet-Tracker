@@ -1,45 +1,33 @@
 ﻿@model IEnumerable<Humber_Timesheet_Tracker.Models.CourseDto>
-@*@model Humber_Timesheet_Tracker.Models.ViewModels.DetailsCourse*@
 
 @{
     ViewBag.Title = "List";
 }
 <div class="wrapper">
-    <div class="details">
-        <div class="thumbnail">
-            hello
-        </div>
-        @*<table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Course name</th>
-                    <th class="col-sm-1">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var course in Model)
-                {
-                    <tr>
-                        <td>
-                            <p>@course.CourseName<br /></p>
-                        </td>
-                        <td>
-                            <a href="/Course/Details/@course.CourseId" class="btn btn-sucess">Go to detail <br /></a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-            <tfoot>
-                <tr>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>course name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Model)
+            {
+                <tr class="table-secondary">
                     <td>
-                        <a href="/Course/New" class="btn btn-success">New Course</a>
-                    </td>
-                    <td>
+                        <a href="/course/details/@course.CourseId">@course.CourseName</a>
                     </td>
                 </tr>
-            </tfoot>
-        </table>*@
-    </div>
-
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>
+                    <a href="/course/new" class="btn btn-outline-primary">Add course</a>
+                    <a href="/CourseTask/New" class="btn btn-outline-primary">Add Task</a>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
 </div>
 

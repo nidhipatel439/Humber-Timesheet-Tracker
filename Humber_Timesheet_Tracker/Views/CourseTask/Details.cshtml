@@ -3,12 +3,39 @@
     ViewBag.Title = "Details";
 }
 
-<a href="/CourseTask/List">Go back to list</a>
-<br />
-<a href="/CourseTask/Edit/@Model.CourseTaskId">Update</a>
-<br />
-<a href="/CourseTask/DeleteConfirm/@Model.CourseTaskId">Delete</a>
-<h2>Details</h2>
-<p>Taskname: @Model.CourseTaskName</p>
-<p>Tasktime: @Model.CourseTaskTime seconds</p>
-<p>Coursename: @Model.CourseName</p>
+
+
+<div class="wrapper" id="taskdetail" >
+    <h2>
+        Taskname:
+        <a href="/CourseTask/Edit/@Model.CourseTaskId"> @Model.CourseTaskName</a>
+    </h2>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Task description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-secondary">
+                <td>
+                    <p>Tasktime: @Model.CourseTaskTime seconds</p>
+                </td>
+                <td>
+                    <p>Coursename: @Model.CourseName</p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>
+                    <a href="/CourseTask/DeleteConfirm/@Model.CourseTaskId" class="btn btn-outline-primary">Delete Course</a>
+                </td>
+                <td>
+                    <a href="/CourseTask/List" class="btn btn-outline-primary">Back</a>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

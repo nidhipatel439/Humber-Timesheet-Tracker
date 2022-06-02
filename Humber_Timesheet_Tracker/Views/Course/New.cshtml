@@ -3,13 +3,19 @@
     ViewBag.Title = "New";
 }
 
-<h2>Create course</h2>
-<form action="/Course/Create" method="Post">
-    <div>
-        <label>Coursename:</label> <input type="text" name="CourseName" />
-    </div>
-    <div>
-        <input type="submit" value="Add course" />
-    </div>
-</form>
 
+<div id="edit" class="wrapper">
+    <form action="/Course/Create" method="Post">
+        <fieldset>
+            <legend>Create Course</legend>
+            <div class="form-group">
+                <label for="CourseName" class="form-label mt-4">Course Name</label>
+                <input type="text" class="form-control" id="CourseName" name="CourseName" placeholder="Enter course name" required/>
+            </div>
+            <div class="form-group mt-4">
+                <input type="submit" value="Add Course" class="btn btn-outline-primary" />
+            </div>
+        </fieldset>
+    </form>
+    <a href="/Course/List" class="btn btn-outline-primary mt-4">Cancel</a>
+</div>

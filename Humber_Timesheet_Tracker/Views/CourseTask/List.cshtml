@@ -3,14 +3,32 @@
     ViewBag.Title = "List";
 }
 
-<a href="/CourseTask/New">New Task</a>
-<h2>List</h2>
-@foreach (var coursetask in Model)
-{
-    <h2>Taskname:<a href="/CourseTask/Details/@coursetask.CourseTaskId"> @coursetask.CourseTaskName</a> <br /></h2>
-    <p>Tasktime: @coursetask.CourseTaskTime</p>
-}
 
-
-
+<div class="wrapper">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Task name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var coursetask in Model)
+            {
+                <tr class="table-secondary">
+                    <td>
+                        <a href="/CourseTask/Details/@coursetask.CourseTaskId">@coursetask.CourseTaskName</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>
+                    <a href="/CourseTask/New" class="btn btn-outline-primary">Add Task</a>
+                    <a href="/Course/New" class="btn btn-outline-primary">Add Course</a>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
 

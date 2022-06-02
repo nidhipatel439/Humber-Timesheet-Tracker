@@ -23,50 +23,32 @@ textarea {
     max-width: 280px;
 }
 
-.table {
-    border: 1px solid #dee2e6;
-}
-.table > thead > tr > th, .table > tbody{
-    border-bottom: 2px solid #000000;
-}
-.table a {
-    background-color: #000033;
-    color: #ffffff;
-}
-.btn:hover, .btn:active:focus, .btn:active {
-    background-color: #cc9900;
-    border-color: #cc9900;
-    box-shadow: none;
-}
-.main {
-    height: 100vh;
-    padding-top: 100px;
-    aspect-ratio: 16/9;
-    background-repeat: no-repeat;
-    width: 100%;
-    background-size: cover;
-    background-position: center;
-    background-image: url(../image/layers.svg);
-}
-footer{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    text-align:center;
-}
 .wrapper{
-    display:flex;
-    justify-content:center;
-    margin-top:50px;
+    width:50%;
+    margin:0 auto;
 }
-p{
-    margin:0;
-    padding:inherit;
+#coursetaskdetail .name {
+    padding-top:1em;
+    display:block;
 }
-.details{
-    width:40%;
+.wrapper h2{
+    display:inline-block;
 }
-.navbar {
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+#delete-page{
+    padding:6em;
+}
+#delete-page h4{
+   padding:1em 0;   
+}
+#delete-page form{
+    display:inline-block;
+}
+#edit input, #register input, #login input{
+    max-width:100%;
+}
+#login, #register, #edit, #taskdetail {
+    margin: 2em auto;
+}
+#socialLoginForm{
+    padding-top:2em;
 }

@@ -3,18 +3,41 @@
     ViewBag.Title = "Details";
 }
 
-<a href="/Course/List">Go back to list</a>
-<br />
-<a href="/Course/Edit/@Model.SelectedCourse.CourseId">Update</a>
-<br/>
-<a href="/Course/DeleteConfirm/@Model.SelectedCourse.CourseId">Delete</a>
-<h2>@Model.SelectedCourse.CourseName</h2>
-<p>Coursename: @Model.SelectedCourse.CourseName</p>
 
-<div style="margin-top:100px;">
-    <h3>Coursetasks related to this course</h3>
-    @foreach(var coursetask in Model.RelatedCourseTasks)
-    {
-        <a href="/CourseTask/Details/@coursetask.CourseTaskId">@coursetask.CourseTaskName</a>
-    }
+<div class="wrapper" id="coursetaskdetail">
+    <h2> Coursename:
+<a href="/Course/Edit/@Model.SelectedCourse.CourseId"> @Model.SelectedCourse.CourseName</a>
+    </h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Task Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var coursetask in Model.RelatedCourseTasks)
+        {
+            <tr class="table-secondary">
+                <td>
+                    <a href="/CourseTask/Details/@coursetask.CourseTaskId" class="name">@coursetask.CourseTaskName</a>
+                </td>
+                <td>
+                    <a href="/CourseTask/Edit/@coursetask.CourseTaskId" class="btn btn-outline-primary">Update</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>
+                <a href="/CourseTask/New" class="btn btn-outline-primary">Add Task</a>
+                <a href="/Course/DeleteConfirm/@Model.SelectedCourse.CourseId" class="btn btn-outline-primary">Delete Course</a>
+            </td>
+            <td>
+                <a href="/Course/List" class="btn btn-outline-primary">Back</a>
+            </td>
+        </tr>
+    </tfoot>
+</table>
 </div>

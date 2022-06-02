@@ -4,28 +4,35 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Update Course task</h2>
-<form action="/CourseTask/Update/@Model.SelectedCourseTask.CourseTaskId" method="POST">
-    <div style="display:none;">
-        <input type="text" name="CourseTaskId" value="@Model.SelectedCourseTask.CourseTaskId" />
-    </div>
-    <div>
-        <label>Name:</label> <input type="text" name="CourseTaskName" value="@Model.SelectedCourseTask.CourseTaskName" />
-    </div>
-    <div>
-        <label>Time:</label> <input type="number" name="CourseTaskTime" value="@Model.SelectedCourseTask.CourseTaskTime" />
-    </div>
-    <div>
-        <label>Course:</label>
-        <select name="CourseId">
-            @foreach (var Courses in Model.CourseOptions)
-            {
-                <option value="@Courses.CourseId">@Courses.CourseName</option>
-            }
-        </select>
-    </div>
-    <div>
-        <input type="submit" value="Update Task" />
 
-    </div>
-</form>
+<div id="edit" class="wrapper">
+    <form action="/CourseTask/Update/@Model.SelectedCourseTask.CourseTaskId" method="Post">
+        <fieldset>
+            <legend>Update Task</legend>
+            <div class="form-group" style="display:none;">
+                <input type="text" name="CourseTaskId" value="@Model.SelectedCourseTask.CourseTaskId" required/>
+            </div>
+            <div class="form-group">
+                <label for="CourseTaskName" class="form-label mt-4">Task name</label>
+                <input type="text" class="form-control" id="CourseTaskName" name="CourseTaskName" value="@Model.SelectedCourseTask.CourseTaskName" required/>
+            </div>
+            <div class="form-group">
+                <label for="CourseTaskTime" class="form-label mt-4">Task time</label>
+                <input type="number" class="form-control" id="CourseTaskTime" name="CourseTaskTime" value="@Model.SelectedCourseTask.CourseTaskTime" required/>
+            </div>
+            <div class="form-group">
+                <label class="form-label mt-4" for="CourseName">Course Name:</label>
+                <select name="CourseId" class="form-select" required>
+                    @foreach (var Courses in Model.CourseOptions)
+                    {
+                        <option value="@Courses.CourseId">@Courses.CourseName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group mt-4">
+                <input type="submit" value="Update Task" class="btn btn-outline-primary" />
+            </div>
+        </fieldset>
+    </form>
+    <a href="/CourseTask/List" class="btn btn-outline-primary mt-4">Cancel</a>
+</div>

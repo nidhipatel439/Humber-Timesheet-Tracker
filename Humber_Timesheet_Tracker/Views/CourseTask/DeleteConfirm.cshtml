@@ -3,11 +3,13 @@
     ViewBag.Title = "DeleteConfirm";
 }
 
-<h2>Are you sure you want to delete this task?</h2>
-<a href="/CourseTask/List">Cancel</a>
-<h3>Taskname: @Model.CourseTaskName</h3>
-<p>Tasktime: @Model.CourseTaskTime</p>
-<form action="/CourseTask/Delete/@Model.CourseTaskId" method="POST">
-    <input type="submit" value="Confirm Delete" />
-</form>
 
+<div id="delete-page">
+    <h2>Are you sure you want to delete this task?</h2>
+    <h4>Taskname: @Model.CourseTaskName</h4>
+    <h4>Tasktime: @Model.CourseTaskTime</h4>
+    <form action="/CourseTask/Delete/@Model.CourseTaskId" method="POST">
+        <input type="submit" class="btn btn-outline-primary" value="Confirm Delete" />
+    </form>
+    <a href="/CourseTask/List" class="btn btn-outline-primary">Cancel</a>
+</div>

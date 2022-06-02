@@ -3,25 +3,32 @@
     ViewBag.Title = "New";
 }
 
-<h2>Create Course-Task</h2>
-<form action="/CourseTask/Create" method="Post">
-    <div>
-        <label>Taskname:</label> <input type="text" name="CourseTaskName" />
-    </div>
-    <div>
-        <label>Tasktime:</label> <input type="number" name="CourseTaskTime" />
-    </div>
-    <div>
-        <label>Course:</label>
-        <select name="CourseId">
-            @foreach (var Courses in Model)
-            {
-                <option value="@Courses.CourseId">@Courses.CourseName</option>
-            }
-        </select>
-    </div>
-    <div>
-        <input type="submit" value="Add new task" />
-    </div>
-</form>
 
+<div id="edit" class="wrapper">
+    <form action="/CourseTask/Create" method="Post">
+        <fieldset>
+            <legend>Create Task</legend>
+            <div class="form-group">
+                <label for="CourseTaskName" class="form-label mt-4">Task Name</label>
+                <input type="text" class="form-control" id="CourseTaskName" name="CourseTaskName" placeholder="Enter task name" required />
+            </div>
+            <div class="form-group">
+                <label for="CourseTaskTime" class="form-label mt-4">Task Time</label>
+                <input type="number" class="form-control" id="CourseTaskTime" name="CourseTaskTime" placeholder="Enter task time" required />
+            </div>
+            <div class="form-group">
+                <label class="form-label mt-4" for="CourseName">Course Name:</label>
+                <select name="CourseId" class="form-select" required>
+                    @foreach (var Courses in Model)
+                    {
+                        <option value="@Courses.CourseId">@Courses.CourseName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group mt-4">
+                <input type="submit" value="Add Task" class="btn btn-outline-primary" />
+            </div>
+        </fieldset>
+    </form>
+    <a href="/CourseTask/List" class="btn btn-outline-primary mt-4">Cancel</a>
+</div>
