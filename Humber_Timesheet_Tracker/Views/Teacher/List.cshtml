@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Humber_Timesheet_Tracker.Models.TeacherDto>
+
+@{
+    ViewBag.Title = "List";
+}
+
+
+<div class="card m-4 shadow">
+    <div class="card-header">
+        <h2 class="card-title">
+            <span class="text-dark">Teacher</span>
+        </h2>
+        <h6 class="card-subtitle">List</h6>
+    </div>
+    <div class="card-body">
+        <ul class="list-group">
+            @foreach (var Teacher in Model)
+            {
+                <li class="list-group-item d-flex justify-content-between">
+                    <a href="/Teacher/Details/@Teacher.TeacherId">@Teacher.TeacherLastName,@Teacher.TeacherFirstName</a>
+                </li>
+            }
+        </ul>
+        <div class="d-flex justify-content-end">
+            <a href="/Teacher/New" class="btn btn-outline-primary mt-2">Add Teacher</a>
+        </div>
+    </div>
+</div>
+
+
+

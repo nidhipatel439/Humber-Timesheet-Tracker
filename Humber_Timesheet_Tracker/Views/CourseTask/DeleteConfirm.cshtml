@@ -4,7 +4,35 @@
 }
 
 
-<div id="delete-page">
+<ol class="breadcrumb m-4">
+    <li class="breadcrumb-item"><a href="/course/list">Course</a></li>
+    <li class="breadcrumb-item"><a href="/course/details/@Model.CourseId">@Model.CourseName</a></li>
+    <li class="breadcrumb-item">@Model.CourseTaskId</li>
+    <li class="breadcrumb-item active">delete</li>
+</ol>
+
+<div class="card m-4 shadow">
+    <div class="card-header">
+        <h2 class="card-title text-dark">Delete Task</h2>
+        <h6 class="card-subtitle">@Model.CourseTaskId | @Model.CourseTaskName</h6>
+    </div>
+    <div class="card-body">
+
+        <h2>Are you sure you want to delete this task?</h2>
+        <div class="d-flex">
+
+            <form action="/CourseTask/Delete/@Model.CourseTaskId" method="POST">
+                <input name="CourseId" value="@Model.CourseId" class="d-none" />
+                <input type="submit" class="btn btn-danger border border-2 border-danger" value="Delete" />
+            </form>
+            <a href="/Course/Details/@Model.CourseId" class="btn btn-outline-primary ms-1">Back</a>
+        </div>
+    </div>
+</div>
+
+
+
+@*<div id="delete-page">
     <h2>Are you sure you want to delete this task?</h2>
     <h4>Taskname: @Model.CourseTaskName</h4>
     <h4>Tasktime: @Model.CourseTaskTime</h4>
@@ -12,4 +40,4 @@
         <input type="submit" class="btn btn-outline-primary" value="Confirm Delete" />
     </form>
     <a href="/CourseTask/List" class="btn btn-outline-primary">Cancel</a>
-</div>
+</div>*@

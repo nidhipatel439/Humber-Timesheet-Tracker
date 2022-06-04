@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "New";
+}
+
+
+
+<ol class="breadcrumb m-4">
+    <li class="breadcrumb-item"><a href="/Teacher/list">Teacher</a></li>
+    <li class="breadcrumb-item active">create</li>
+</ol>
+
+
+<div class="card m-4 shadow">
+    <div class="card-header">
+        <h2 class="card-title ">
+            <a class="text-decoration-none">Teacher</a>
+        </h2>
+        <h6 class="card-subtitle">create</h6>
+    </div>
+
+    <div class="card-body">
+        <form action="/Teacher/Create" method="Post">
+            <fieldset>
+                <div class="form-group">
+                    <label for="TeacherFirstName" class="form-label mt-4">First Name</label>
+                    <input type="text" class="form-control" id="TeacherFirstName" name="TeacherFirstName" placeholder="Enter first name" required />
+                </div>
+                <div class="form-group">
+                    <label for="TeacherLastName" class="form-label mt-4">Last Name</label>
+                    <input type="text" class="form-control" id="TeacherLastName" name="TeacherLastName" placeholder="Enter last name" required />
+                </div>
+                <div class="form-group mt-4">
+                    <input type="submit" value="Create" class="btn btn-outline-primary" />
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="card-footer">
+        <a href="/Teacher/List" class="btn btn-outline-primary">Back</a>
+    </div>
+</div>
+
+
+@*<h2>Create Teacher</h2>
+<form action="/Teacher/Create" method="POST">
+    <div>
+        <label>First Name:</label> <input type="text" name="TeacherFirstName" />
+    </div>
+    <div>
+        <label>Last Name:</label> <input type="text" name="TeacherLastName" />
+    </div>
+    <div>
+        <input type="submit" value="Create Teacher" />
+    </div>
+</form>*@

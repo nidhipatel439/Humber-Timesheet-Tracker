@@ -16,13 +16,15 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarColor01">
-                <ul class="navbar-nav me-auto"></ul>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">@Html.ActionLink("Teachers", "List", "Teacher", new { area = ""}, new {@class = "nav-link"})</li>
+                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
             </nav>
 
-            <div>
+            <div class="container">
                 @RenderBody()
             </div>
             

@@ -28,6 +28,8 @@ namespace Humber_Timesheet_Tracker.Models
         public DbSet<Course> Courses { get; set; }
         public DbSet<CourseTask> CourseTasks { get; set; }
 
+        public DbSet<Teacher> Teachers { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

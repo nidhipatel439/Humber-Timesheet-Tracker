@@ -1,0 +1,71 @@
+﻿@model Humber_Timesheet_Tracker.Models.TeacherDto
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+<ol class="breadcrumb m-4">
+    <li class="breadcrumb-item"><a href="/Teacher/list">Teacher</a></li>
+    <li class="breadcrumb-item"><a href="/Teacher/Details/@Model.TeacherId">@Model.TeacherFirstName</a></li>
+    <li class="breadcrumb-item active">update</li>
+</ol>
+
+<div class="card m-4 shadow">
+
+    <div class="card-header">
+
+        <h2 class="card-title text-dark">
+            Update
+        </h2>
+        <h6 class="card-subtitle">@Model.TeacherId | @Model.TeacherFirstName</h6>
+    </div>
+
+    <div class="card-body">
+
+
+        <form action="/Teacher/Update/@Model.TeacherId" method="Post">
+            <fieldset>
+                <div class="form-group" style="display:none;">
+                    <input type="text" name="TeacherId" value="@Model.TeacherId" required />
+                </div>
+                <div class="form-group">
+                    <label for="TeacherFirstName" class="form-label mt-4">First Name</label>
+                    <input type="text" class="form-control" id="TeacherFirstName" name="TeacherFirstName" value="@Model.TeacherFirstName" required />
+                </div>
+                <div class="form-group">
+                    <label for="TeacherLastName" class="form-label mt-4">Last Name</label>
+                    <input type="text" class="form-control" id="TeacherLastName" name="TeacherLastName" value="@Model.TeacherLastName" required />
+                </div>
+                <div class="form-group mt-4">
+                    <input type="submit" value="Update Teacher" class="btn btn-outline-primary" />
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="card-footer">
+        <a href="/Teacher/DeleteConfirm/@Model.TeacherId" class="btn btn-danger border border-2 border-danger">Delete Teacher</a>
+
+        <a href="/Teacher/Details/@Model.TeacherId" class="btn btn-outline-primary">Back</a>
+    </div>
+</div>
+
+
+
+@*<h2>Update Teacher</h2>
+<form action="/Teacher/Update/@Model.TeacherId" method="POST">
+    <div style="display:none;">
+        <input type="text" name="TeacherId" value="@Model.TeacherId" />
+    </div>
+    <div>
+        <label>First Name:</label> <input type="text" name="TeacherFirstName" value="@Model.TeacherFirstName" />
+    </div>
+    <div>
+        <label>Last Name:</label> <input type="text" name="TeacherLastName" value="@Model.TeacherLastName" />
+    </div>
+
+    <div>
+        <input type="submit" value="Update Teacher" />
+
+    </div>
+</form>*@
+

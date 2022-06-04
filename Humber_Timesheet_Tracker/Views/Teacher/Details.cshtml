@@ -1,0 +1,72 @@
+﻿@model Humber_Timesheet_Tracker.Models.ViewModels.DetailsTeacher
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<ol class="breadcrumb m-4">
+    <li class="breadcrumb-item"><a href="/Teacher/List">Teacher</a></li>
+    <li class="breadcrumb-item active">@Model.SelectedTeacher.TeacherFirstName</li>
+</ol>
+
+<div class="card m-4 shadow">
+    <div class="card-header">
+
+        <h2 class="card-title ">
+            <a class="text-decoration-none" href="/Teacher/Edit/@Model.SelectedTeacher.TeacherId"> @Model.SelectedTeacher.TeacherLastName,@Model.SelectedTeacher.TeacherFirstName</a>
+        </h2>
+        <h6 class="card-subtitle">Teacher</h6>
+    </div>
+
+
+    <div class="card-body">
+
+
+        @* Course List *@
+        <h6 class="mt-3">Courses</h6>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between bg-dark text-white">
+                <span>Course Name</span>
+            </li>
+            @foreach (var course in Model.KeptCourses)
+            {
+                <li class="list-group-item d-flex justify-content-between">
+
+                    <span>@course.CourseName</span>
+
+                </li>
+
+            }
+        </ul>
+    </div>
+
+
+    <div class="card-footer">
+        <a href="/Teacher/Edit/@Model.SelectedTeacher.TeacherId" class="btn btn-outline-primary">Edit Teacher</a>
+        <a href="/Teacher/List" class="btn btn-outline-primary">Back</a>
+
+    </div>
+</div>
+
+
+
+
+
+    @*<a href="/Teacher/List">Go back to list</a>
+    <br />
+    <a href="/Teacher/Edit/@Model.SelectedTeacher.TeacherId">Update</a>
+    <br />
+    <a style="color:#ab2020;" href="/Teacher/DeleteConfirm/@Model.SelectedTeacher.TeacherId">Delete</a>
+    <h2>@Model.SelectedTeacher.TeacherFirstName @Model.SelectedTeacher.TeacherLastName</h2>
+
+
+
+    <div>
+        <h3>Responsible for:</h3>
+        @foreach (var course in Model.KeptCourses)
+        {
+            <a href="/Course/Details/@course.CourseId">@course.CourseName</a><br />
+
+        }
+    </div>*@
+

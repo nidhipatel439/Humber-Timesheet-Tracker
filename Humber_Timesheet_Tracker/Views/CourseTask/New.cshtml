@@ -3,32 +3,48 @@
     ViewBag.Title = "New";
 }
 
+<ol class="breadcrumb m-4">
+    <li class="breadcrumb-item"><a href="/course/list">Task</a></li>
+    <li class="breadcrumb-item active">create</li>
+</ol>
 
-<div id="edit" class="wrapper">
-    <form action="/CourseTask/Create" method="Post">
-        <fieldset>
-            <legend>Create Task</legend>
-            <div class="form-group">
-                <label for="CourseTaskName" class="form-label mt-4">Task Name</label>
-                <input type="text" class="form-control" id="CourseTaskName" name="CourseTaskName" placeholder="Enter task name" required />
-            </div>
-            <div class="form-group">
-                <label for="CourseTaskTime" class="form-label mt-4">Task Time</label>
-                <input type="number" class="form-control" id="CourseTaskTime" name="CourseTaskTime" placeholder="Enter task time" required />
-            </div>
-            <div class="form-group">
-                <label class="form-label mt-4" for="CourseName">Course Name:</label>
-                <select name="CourseId" class="form-select" required>
-                    @foreach (var Courses in Model)
-                    {
-                        <option value="@Courses.CourseId">@Courses.CourseName</option>
-                    }
-                </select>
-            </div>
-            <div class="form-group mt-4">
-                <input type="submit" value="Add Task" class="btn btn-outline-primary" />
-            </div>
-        </fieldset>
-    </form>
-    <a href="/CourseTask/List" class="btn btn-outline-primary mt-4">Cancel</a>
+
+<div class="card m-4 shadow">
+    <div class="card-header">
+        <h2 class="card-title ">
+            <a class="text-decoration-none">Task</a>
+        </h2>
+        <h6 class="card-subtitle">create</h6>
+    </div>
+
+    <div class="card-body">
+        <form action="/CourseTask/Create" method="Post">
+            <fieldset>
+                <div class="form-group">
+                    <label for="CourseTaskName" class="form-label mt-4">Task Name</label>
+                    <input type="text" class="form-control" id="CourseTaskName" name="CourseTaskName" placeholder="Enter task name" required />
+                </div>
+                <div class="form-group">
+                    <label for="CourseTaskTime" class="form-label mt-4">Task Time</label>
+                    <input type="number" class="form-control" id="CourseTaskTime" name="CourseTaskTime" placeholder="Enter task time" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label mt-4" for="CourseName">Course Name:</label>
+                    <select name="CourseId" class="form-select" required>
+                        @foreach (var Courses in Model)
+                        {
+                            <option value="@Courses.CourseId">@Courses.CourseName</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group mt-4">
+                    <input type="submit" value="Add Task" class="btn btn-outline-primary" />
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="card-footer">
+        <a href="/Course/List" class="btn btn-outline-primary">Back</a>
+    </div>
 </div>

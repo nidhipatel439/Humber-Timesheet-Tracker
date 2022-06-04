@@ -4,21 +4,43 @@
 }
 
 
-<div id="edit" class="wrapper">
+<ol class="breadcrumb m-4">
+    <li class="breadcrumb-item"><a href="/course/list">Course</a></li>
+    <li class="breadcrumb-item"><a href="/course/details/@Model.CourseId">@Model.CourseName</a></li>
+    <li class="breadcrumb-item active">update</li>
+</ol>
+
+<div class="card m-4 shadow">
+
+    <div class="card-header">
+
+        <h2 class="card-title text-dark">
+            Update
+        </h2>
+        <h6 class="card-subtitle">@Model.CourseId | @Model.CourseName</h6>
+    </div>
+
+    <div class="card-body">
+        
+
     <form action="/Course/Update/@Model.CourseId" method="Post">
         <fieldset>
-            <legend>Update Course</legend>
             <div class="form-group" style="display:none;">
-                <input type="text" name="CourseId" value="@Model.CourseId" required/>
+                <input type="text" name="CourseId" value="@Model.CourseId" required />
             </div>
             <div class="form-group">
                 <label for="CourseName" class="form-label mt-4">Course Name</label>
-                <input type="text" class="form-control" id="CourseName" name="CourseName" value="@Model.CourseName" required/>
+                <input type="text" class="form-control" id="CourseName" name="CourseName" value="@Model.CourseName" required />
             </div>
             <div class="form-group mt-4">
                 <input type="submit" value="Update Course" class="btn btn-outline-primary" />
             </div>
         </fieldset>
     </form>
-    <a href="/Course/List" class="btn btn-outline-primary mt-4">Cancel</a>
+        </div>
+    <div class="card-footer">
+        <a href="/Course/DeleteConfirm/@Model.CourseId" class="btn btn-danger border border-2 border-danger">Delete Course</a>
+
+        <a href="/Course/Details/@Model.CourseId" class="btn btn-outline-primary">Back</a>
+    </div>
 </div>

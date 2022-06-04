@@ -2,6 +2,7 @@
 using Humber_Timesheet_Tracker.Models.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
@@ -75,7 +76,7 @@ namespace Humber_Timesheet_Tracker.Controllers
 
             if(response.IsSuccessStatusCode)
             {
-                return RedirectToAction("List");
+                return RedirectToAction("Details","Course",new { id = coursetask.CourseId });
             }else
             {
                 return RedirectToAction("Error");
@@ -117,7 +118,7 @@ namespace Humber_Timesheet_Tracker.Controllers
 
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("List");
+                return RedirectToAction("Details", "Course", new { id = coursetask.CourseId });
             }
             else
             {
@@ -144,10 +145,10 @@ namespace Humber_Timesheet_Tracker.Controllers
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;
-
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("List");
+                // return RedirectToAction("Error");
+                return RedirectToAction("Details", "Course" , new {id = coursetask.CourseId});
             }
             else
             {

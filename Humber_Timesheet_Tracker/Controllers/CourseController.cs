@@ -22,6 +22,8 @@ namespace Humber_Timesheet_Tracker.Controllers
             client.BaseAddress = new Uri("https://localhost:44375/api/");
         }
 
+
+
         // GET: Course/List
         public ActionResult List()
         {
@@ -53,8 +55,50 @@ namespace Humber_Timesheet_Tracker.Controllers
             IEnumerable<CourseTaskDto> RelatedCourseTasks = response.Content.ReadAsAsync<IEnumerable<CourseTaskDto>>().Result;
 
             ViewModel.RelatedCourseTasks = RelatedCourseTasks;
+
+            //show associated teachers with this course
+            url = "TeacherData/ListTeachersForCourse/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<TeacherDto> ResponsibleTeachers = response.Content.ReadAsAsync<IEnumerable<TeacherDto>>().Result;
+
+            ViewModel.ResponsibleTeachers = ResponsibleTeachers;
+
+            url = "TeacherData/ListTeachersNotCaringForCourse/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<TeacherDto> AvailableTeachers = response.Content.ReadAsAsync<IEnumerable<TeacherDto>>().Result;
+
+            ViewModel.AvailableTeachers = AvailableTeachers;
             return View(ViewModel);
         }
+
+        //POST: Course/Associate/{id}
+        [HttpPost]
+        public ActionResult Associate(int id, int TeacherId)
+        {
+            
+           //call our api to associate course with teacher
+            string url = "CourseData/AssociateCourseWithTeacher/" + id + "/" + TeacherId;
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            return RedirectToAction("Details/" + id);
+        }
+
+        //Get: Course/UnAssociate/{id}?TeacherId={TeacherId}
+        [HttpGet]
+        public ActionResult UnAssociate(int id, int TeacherId)
+        {
+            
+            //call our api to associate course with teacher
+            string url = "CourseData/UnAssociateCourseWithTeacher/" + id + "/" + TeacherId;
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            return RedirectToAction("Details/" + id);
+        }
+
 
         //GET: Course/Error
         public ActionResult Error()
@@ -114,7 +158,7 @@ namespace Humber_Timesheet_Tracker.Controllers
 
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("List");
+                return RedirectToAction("Details", new {id = id });
             }
             else
             {

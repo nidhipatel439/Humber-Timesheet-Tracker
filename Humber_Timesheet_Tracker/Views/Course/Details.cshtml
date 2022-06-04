@@ -4,40 +4,95 @@
 }
 
 
-<div class="wrapper" id="coursetaskdetail">
-    <h2> Coursename:
-<a href="/Course/Edit/@Model.SelectedCourse.CourseId"> @Model.SelectedCourse.CourseName</a>
-    </h2>
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Task Name</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var coursetask in Model.RelatedCourseTasks)
-        {
-            <tr class="table-secondary">
-                <td>
-                    <a href="/CourseTask/Details/@coursetask.CourseTaskId" class="name">@coursetask.CourseTaskName</a>
-                </td>
-                <td>
-                    <a href="/CourseTask/Edit/@coursetask.CourseTaskId" class="btn btn-outline-primary">Update</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-    <tfoot>
-        <tr>
-            <td>
-                <a href="/CourseTask/New" class="btn btn-outline-primary">Add Task</a>
-                <a href="/Course/DeleteConfirm/@Model.SelectedCourse.CourseId" class="btn btn-outline-primary">Delete Course</a>
-            </td>
-            <td>
-                <a href="/Course/List" class="btn btn-outline-primary">Back</a>
-            </td>
-        </tr>
-    </tfoot>
-</table>
+<ol class="breadcrumb m-4">
+    <li class="breadcrumb-item"><a href="/course/list">Course</a></li>
+    <li class="breadcrumb-item active">@Model.SelectedCourse.CourseName</li>
+</ol>
+
+<div class="card m-4 shadow">
+    <div class="card-header">
+
+        <h2 class="card-title ">
+            <a class="text-decoration-none" href="/Course/Edit/@Model.SelectedCourse.CourseId"> @Model.SelectedCourse.CourseName</a>
+        </h2>
+        <h6 class="card-subtitle">Course</h6>
+    </div>
+
+
+    <div class="card-body">
+        @* Teachers List *@
+        <h6 class="mt-3">Teachers</h6>
+        <ul class="list-group">
+            @foreach (var teacher in Model.ResponsibleTeachers)
+            {
+
+                <li class="list-group-item d-flex justify-content-between">
+                    <p class="p-0 m-0">@teacher.TeacherFirstName @teacher.TeacherLastName</p>
+                    <a class="badge bg-danger rounded-pill text-decoration-none" href="/Course/UnAssociate/@Model.SelectedCourse.CourseId?TeacherId=@teacher.TeacherId">Delete</a>
+
+                </li>
+            }
+        </ul>
+
+        @* Add Teacher *@
+        <h6 class="mt-3">Add Teacher</h6>
+        <form class="d-flex" method="POST" action="/Course/Associate/@Model.SelectedCourse.CourseId">
+            @*<label class="form-label mt-4" for="TeacherId">Teacher Name::</label>*@
+            <select name="TeacherId" class="form-select">
+                @foreach (var teacher in Model.AvailableTeachers)
+                {
+                    <option value="@teacher.TeacherId">@teacher.TeacherFirstName @teacher.TeacherLastName</option>
+                }
+            </select>
+
+
+            <input class="btn btn-outline-primary" type="submit" value="Add Teacher" />
+        </form>
+
+        @* Task List *@
+        <h6 class="mt-3">Tasks</h6>
+        <ul class="list-group">
+            <li class="list-group-item bg-dark text-white ">
+                <div class="row">
+
+                <div class="col-sm-4">Task Name</div>
+                <div class="col-sm-4 text-center">Task Time</div>
+                <div class="col-sm-4 text-end">Actions</div>
+                </div>
+            </li>
+                @foreach (var coursetask in Model.RelatedCourseTasks)
+                {
+                <li class="list-group-item ">
+                    <div class="row">
+
+                    <div class="col-sm-4 text-truncate">@coursetask.CourseTaskName</div>
+
+                        <span class="col-sm-4 text-center">@coursetask.CourseTaskTime Seconds</span>
+                        <div class="d-flex gap-1 justify-content-end col-sm-4">
+                            <a class="badge bg-success text-decoration-none" href="/CourseTask/Edit/@coursetask.CourseTaskId">Update</a>
+                            <a class="badge bg-danger text-decoration-none" href="/CourseTask/DeleteConfirm/@coursetask.CourseTaskId">Delete</a>
+                        </div>
+                    </div>
+                </li>
+
+            }
+            </ul>
+        <div class="d-flex justify-content-end">
+
+            <a href="/CourseTask/New" class="btn btn-outline-primary mt-2 ">Add Task</a>
+        </div>
+
+
+
+
+    </div>
+
+
+    <div class="card-footer">
+        <a href="/Course/Edit/@Model.SelectedCourse.CourseId" class="btn btn-outline-primary">Edit Course</a>
+        <a href="/Course/List" class="btn btn-outline-primary">Back</a>
+
+    </div>
+
 </div>

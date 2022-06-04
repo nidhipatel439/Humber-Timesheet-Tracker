@@ -10,5 +10,9 @@ namespace Humber_Timesheet_Tracker.Models.ViewModels
         public CourseDto SelectedCourse { get; set; }
         public IEnumerable<CourseTaskDto> RelatedCourseTasks { get; set; }
 
+        public IEnumerable<TeacherDto> ResponsibleTeachers { get; set; }
+
+        public IEnumerable<TeacherDto> AvailableTeachers { get; set; }
+
     }
 }

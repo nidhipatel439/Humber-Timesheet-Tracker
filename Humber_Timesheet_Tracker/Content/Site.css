@@ -17,38 +17,7 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
 
-.wrapper{
-    width:50%;
-    margin:0 auto;
-}
-#coursetaskdetail .name {
-    padding-top:1em;
-    display:block;
-}
-.wrapper h2{
-    display:inline-block;
-}
-#delete-page{
-    padding:6em;
-}
-#delete-page h4{
-   padding:1em 0;   
-}
-#delete-page form{
-    display:inline-block;
-}
-#edit input, #register input, #login input{
-    max-width:100%;
-}
-#login, #register, #edit, #taskdetail {
-    margin: 2em auto;
-}
-#socialLoginForm{
-    padding-top:2em;
+.navbar-brand {
+    font-size: 1.2em !important;
 }

@@ -3,19 +3,36 @@
     ViewBag.Title = "New";
 }
 
+<ol class="breadcrumb m-4">
+    <li class="breadcrumb-item"><a href="/course/list">Course</a></li>
+    <li class="breadcrumb-item active">create</li>
+</ol>
 
-<div id="edit" class="wrapper">
-    <form action="/Course/Create" method="Post">
-        <fieldset>
-            <legend>Create Course</legend>
-            <div class="form-group">
-                <label for="CourseName" class="form-label mt-4">Course Name</label>
-                <input type="text" class="form-control" id="CourseName" name="CourseName" placeholder="Enter course name" required/>
-            </div>
-            <div class="form-group mt-4">
-                <input type="submit" value="Add Course" class="btn btn-outline-primary" />
-            </div>
-        </fieldset>
-    </form>
-    <a href="/Course/List" class="btn btn-outline-primary mt-4">Cancel</a>
+
+<div class="card m-4 shadow">
+    <div class="card-header">
+        <h2 class="card-title ">
+            <a class="text-decoration-none">Course</a>
+        </h2>
+        <h6 class="card-subtitle">create</h6>
+    </div>
+
+    <div class="card-body">
+        <form action="/Course/Create" method="Post">
+            <fieldset>
+                <div class="form-group">
+                    <label for="CourseName" class="form-label mt-4">Course Name</label>
+                    <input type="text" class="form-control" id="CourseName" name="CourseName" placeholder="Enter course name" required />
+                </div>
+                <div class="form-group mt-4">
+                    <input type="submit" value="Create" class="btn btn-outline-primary" />
+                </div>
+            </fieldset>
+        </form>
+    </div>
+        
+    <div class="card-footer">            
+        <a href="/Course/List" class="btn btn-outline-primary">Back</a>        
+    </div>    
 </div>
+

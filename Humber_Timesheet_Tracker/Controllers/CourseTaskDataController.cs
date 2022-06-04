@@ -16,7 +16,17 @@ namespace Humber_Timesheet_Tracker.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/CourseTaskData/ListCourseTasks
+
+        /// <summary>
+        /// Returns all coursetasks in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all coursetasks in the database, including their associated course.
+        /// </returns>
+        /// <example>
+        /// GET: api/CourseTaskData/ListCourseTasks
+        /// </example>
         [ResponseType(typeof(CourseTaskDto))]
         [HttpGet]
         public IHttpActionResult ListCourseTasks()
@@ -35,6 +45,8 @@ namespace Humber_Timesheet_Tracker.Controllers
             return Ok(CourseTaskDtos);
             
         }
+
+
 
         // GET: api/CourseTaskData/ListCourseTasksForCourse/{id}
         [ResponseType(typeof(CourseTaskDto))]
@@ -56,7 +68,20 @@ namespace Humber_Timesheet_Tracker.Controllers
 
         }
 
-        // GET: api/CourseTaskData/FindCourseTask/5
+
+        /// <summary>
+        /// Returns all coursetask in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: A coursetask in the system matching up to the coursetask ID primary key
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <param name="id">The primary key of the coursetask</param>
+        /// <example>
+        /// GET: api/CourseTaskData/FindCourseTask/5
+        /// </example>
         [ResponseType(typeof(CourseTask))]
         [HttpGet]
         public IHttpActionResult FindCourseTask(int id)
@@ -78,7 +103,23 @@ namespace Humber_Timesheet_Tracker.Controllers
             return Ok(CourseTaskDtos);
         }
 
-        // POST: api/CourseTaskData/UpdateCourseTask/5
+
+        /// <summary>
+        /// Updates a particular coursetask in the system with POST Data input
+        /// </summary>
+        /// <param name="id">Represents the coursetask ID primary key</param>
+        /// <param name="coursetask">JSON FORM DATA of a coursetask</param>
+        /// <returns>
+        /// HEADER: 204 (Success, No Content Response)
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// or
+        /// HEADER: 404 (Not Found)
+        /// </returns>
+        /// <example>
+        /// POST: api/CourseTaskData/UpdateCourseTask/5
+        /// FORM DATA: coursetask JSON Object
+        /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateCourseTask(int id, CourseTask courseTask)
@@ -114,7 +155,21 @@ namespace Humber_Timesheet_Tracker.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/CourseTaskData/AddCourseTask
+
+        /// <summary>
+        /// Adds a coursetask to the system
+        /// </summary>
+        /// <param name="coursetask">JSON FORM DATA of a coursetask</param>
+        /// <returns>
+        /// HEADER: 201 (Created)
+        /// CONTENT: coursetask ID, coursetask Data
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// </returns>
+        /// <example>
+        /// POST: api/CourseTaskData/AddCourseTask
+        /// FORM DATA: coursetask JSON Object
+        /// </example>
         [ResponseType(typeof(CourseTask))]
         [HttpPost]
         public IHttpActionResult AddCourseTask(CourseTask courseTask)
@@ -130,7 +185,20 @@ namespace Humber_Timesheet_Tracker.Controllers
             return CreatedAtRoute("DefaultApi", new { id = courseTask.CourseTaskId }, courseTask);
         }
 
-        // DELETE: api/CourseTaskData/DeleteCourseTask/5
+
+        /// <summary>
+        /// Deletes a coursetask from the system by it's ID.
+        /// </summary>
+        /// <param name="id">The primary key of the coursetask</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        /// DELETE: api/CourseTaskData/DeleteCourseTask/5
+        /// FORM DATA: (empty)
+        /// </example>
         [ResponseType(typeof(CourseTask))]
         [HttpPost]
         public IHttpActionResult DeleteCourseTask(int id)

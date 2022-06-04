@@ -12,11 +12,15 @@ namespace Humber_Timesheet_Tracker.Models
         public int CourseId { get; set; }
 
         public string CourseName { get; set; }
+
+        //a course can be taken care of by many teachers
+        public ICollection<Teacher> Teachers { get; set; }
     }
 
     public class CourseDto
     {
         public int CourseId { get; set; }
         public string CourseName { get; set; }
+
     }
 }
