@@ -127,6 +127,7 @@ namespace Humber_Timesheet_Tracker.Controllers
         /// </example>
         [HttpPost]
         [Route("api/CourseData/AssociateCourseWithTeacher/{courseid}/{teacherid}")]
+        [Authorize]
         public IHttpActionResult AssociateCourseWithTeacher(int courseid, int teacherid)
         {
 
@@ -160,6 +161,7 @@ namespace Humber_Timesheet_Tracker.Controllers
         /// </example>
         [HttpPost]
         [Route("api/CourseData/UnAssociateCourseWithTeacher/{courseid}/{teacherid}")]
+        [Authorize]
         public IHttpActionResult UnAssociateCourseWithTeacher(int courseid, int teacherid)
         {
 
@@ -197,6 +199,7 @@ namespace Humber_Timesheet_Tracker.Controllers
         /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult UpdateCourse(int id, Course course)
         {
             if (!ModelState.IsValid)
@@ -247,6 +250,7 @@ namespace Humber_Timesheet_Tracker.Controllers
         /// </example>
         [ResponseType(typeof(Course))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult AddCourse(Course course)
         {
             if (!ModelState.IsValid)
@@ -277,6 +281,7 @@ namespace Humber_Timesheet_Tracker.Controllers
         /// </example>
         [ResponseType(typeof(Course))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult DeleteCourse(int id)
         {
             Course course = db.Courses.Find(id);

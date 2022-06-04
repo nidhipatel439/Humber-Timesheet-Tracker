@@ -18,8 +18,35 @@ namespace Humber_Timesheet_Tracker.Controllers
 
         static CourseController()
         {
-            client = new HttpClient();
+            HttpClientHandler handler = new HttpClientHandler()
+            {
+                AllowAutoRedirect = false,
+                //cookies are manually set in RequestHeader
+                UseCookies = false
+            };
+
+            client = new HttpClient(handler);
             client.BaseAddress = new Uri("https://localhost:44375/api/");
+        }
+
+        private void GetApplicationCookie()
+        {
+            string token = "";
+            //HTTP client is set up to be reused, otherwise it will exhaust server resources.
+            //This is a bit dangerous because a previously authenticated cookie could be cached for
+            //a follow-up request from someone else. Reset cookies in HTTP client before grabbing a new one.
+            client.DefaultRequestHeaders.Remove("Cookie");
+            if (!User.Identity.IsAuthenticated) return;
+
+            HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies.Get(".AspNet.ApplicationCookie");
+            if (cookie != null) token = cookie.Value;
+
+            //collect token as it is submitted to the controller
+            //use it to pass along to the WebAPI.
+            Debug.WriteLine("Token Submitted is : " + token);
+            if (token != "") client.DefaultRequestHeaders.Add("Cookie", ".AspNet.ApplicationCookie=" + token);
+
+            return;
         }
 
 
@@ -71,8 +98,10 @@ namespace Humber_Timesheet_Tracker.Controllers
             return View(ViewModel);
         }
 
+
         //POST: Course/Associate/{id}
         [HttpPost]
+        [Authorize]
         public ActionResult Associate(int id, int TeacherId)
         {
             
@@ -87,6 +116,7 @@ namespace Humber_Timesheet_Tracker.Controllers
 
         //Get: Course/UnAssociate/{id}?TeacherId={TeacherId}
         [HttpGet]
+        [Authorize]
         public ActionResult UnAssociate(int id, int TeacherId)
         {
             
@@ -106,6 +136,8 @@ namespace Humber_Timesheet_Tracker.Controllers
             return View();
         }
         // GET: Course/New
+        [Authorize]
+
         public ActionResult New()
         {
             return View();
@@ -113,6 +145,7 @@ namespace Humber_Timesheet_Tracker.Controllers
 
         // POST: Course/Create
         [HttpPost]
+        [Authorize]
         public ActionResult Create(Course course)
         {
             //curl -d @course.json -H "Content-Type:application/json" https://localhost:44375/api/CourseData/AddCourse
@@ -134,6 +167,7 @@ namespace Humber_Timesheet_Tracker.Controllers
         }
 
         // GET: Course/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
             //curl https://localhost:44375/api/CourseData/FindCourse/{id}
@@ -146,6 +180,7 @@ namespace Humber_Timesheet_Tracker.Controllers
 
         // POST: Course/Update/5
         [HttpPost]
+        [Authorize]
         public ActionResult Update(int id, Course course)
         {
             //curl -d @course.json -H "Content-Type:application/json" https://localhost:44375/api/CourseData/UpdateCourse/{id}
@@ -167,6 +202,7 @@ namespace Humber_Timesheet_Tracker.Controllers
         }
 
         // GET: Course/DeleteConfirm/5
+        [Authorize]
         public ActionResult DeleteConfirm(int id)
         {
             //curl https://localhost:44375/api/CourseData/FindCourse/{id}
@@ -179,6 +215,7 @@ namespace Humber_Timesheet_Tracker.Controllers
 
         // POST: Course/Delete/5
         [HttpPost]
+        [Authorize]
         public ActionResult Delete(int id, Course course)
         {
             string url = "CourseData/DeleteCourse/" + id;

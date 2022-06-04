@@ -20,6 +20,7 @@ namespace Humber_Timesheet_Tracker.Controllers
             client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:44375/api/");
         }
+
         // GET: Teacher/List
         public ActionResult List()
         {
@@ -68,7 +69,6 @@ namespace Humber_Timesheet_Tracker.Controllers
             return View();
         }
 
-
         // GET: Teacher/Create
         public ActionResult Create()
         {
@@ -77,6 +77,7 @@ namespace Humber_Timesheet_Tracker.Controllers
 
         // POST: Teacher/Create
         [HttpPost]
+
         public ActionResult Create(Teacher Teacher)
         {
             //curl -H "Content-Type:application/json" -d @Teacher.json https://localhost:44375/api/TeacherData/AddTeacher 
@@ -100,6 +101,8 @@ namespace Humber_Timesheet_Tracker.Controllers
         }
 
         // GET: Teacher/Edit/5
+      
+
         public ActionResult Edit(int id)
         {
             string url = "TeacherData/FindTeacher/" + id;
@@ -110,6 +113,8 @@ namespace Humber_Timesheet_Tracker.Controllers
 
         // POST: Teacher/Update/5
         [HttpPost]
+      
+
         public ActionResult Update(int id, Teacher Teacher)
         {
             string url = "Teacherdata/UpdateTeacher/" + id;
@@ -129,6 +134,8 @@ namespace Humber_Timesheet_Tracker.Controllers
         }
 
         // GET: Teacher/DeleteConfirm/5
+      
+
         public ActionResult DeleteConfirm(int id)
         {
             string url = "TeacherData/FindTeacher/" + id;
@@ -139,6 +146,8 @@ namespace Humber_Timesheet_Tracker.Controllers
 
         // POST: Teacher/Delete/5
         [HttpPost]
+      
+
         public ActionResult Delete(int id)
         {
             string url = "Teacherdata/DeleteTeacher/" + id;
