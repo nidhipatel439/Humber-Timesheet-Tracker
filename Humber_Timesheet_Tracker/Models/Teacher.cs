@@ -13,8 +13,10 @@ namespace Humber_Timesheet_Tracker.Models
         public string TeacherFirstName { get; set; }
         public string TeacherLastName { get; set; }
 
+        public bool TeacherHasPic { get; set; }
+        public string PicExtension { get; set; }
 
-        //A teacher can take care of many courses
+        //A teacher can teach many courses
         public ICollection<Course> Courses { get; set; }
     }
 
@@ -23,6 +25,9 @@ namespace Humber_Timesheet_Tracker.Models
         public int TeacherId { get; set; }
         public string TeacherFirstName { get; set; }
         public string TeacherLastName { get; set; }
+
+        public bool TeacherHasPic { get; set; }
+        public string PicExtension { get; set; }
 
     }
 

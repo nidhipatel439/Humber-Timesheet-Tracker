@@ -47,7 +47,7 @@ namespace Humber_Timesheet_Tracker.Controllers
 
             ViewModel.SelectedTeacher = SelectedTeacher;
 
-            //show all courses under the care of this teacher
+            //show all courses of this teacher
             url = "CourseData/ListCoursesForTeacher/" + id;
             response = client.GetAsync(url).Result;
             IEnumerable<CourseDto> KeptCourses = response.Content.ReadAsAsync<IEnumerable<CourseDto>>().Result;
@@ -115,7 +115,7 @@ namespace Humber_Timesheet_Tracker.Controllers
         [HttpPost]
       
 
-        public ActionResult Update(int id, Teacher Teacher)
+        public ActionResult Update(int id, Teacher Teacher, HttpPostedFileBase TeacherPic)
         {
             string url = "Teacherdata/UpdateTeacher/" + id;
             string jsonpayload = jss.Serialize(Teacher);
@@ -123,8 +123,21 @@ namespace Humber_Timesheet_Tracker.Controllers
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;
            
-            if (response.IsSuccessStatusCode)
+            //update request is successful and we have image data
+            if (response.IsSuccessStatusCode && TeacherPic != null)
             {
+                url = "TeacherData/UploadTeacherPic/" + id;
+
+                MultipartFormDataContent requestcontent = new MultipartFormDataContent();
+                HttpContent imagecontent = new StreamContent(TeacherPic.InputStream);
+                requestcontent.Add(imagecontent, "TeacherPic", TeacherPic.FileName);
+                response = client.PostAsync(url, requestcontent).Result;    
+
+                return RedirectToAction("List");
+            }
+            else if (response.IsSuccessStatusCode)
+            {
+                //no image upload but update still successful
                 return RedirectToAction("List");
             }
             else

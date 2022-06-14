@@ -90,7 +90,7 @@ namespace Humber_Timesheet_Tracker.Controllers
 
             ViewModel.ResponsibleTeachers = ResponsibleTeachers;
 
-            url = "TeacherData/ListTeachersNotCaringForCourse/" + id;
+            url = "TeacherData/ListTeachersNotTeachingCourse/" + id;
             response = client.GetAsync(url).Result;
             IEnumerable<TeacherDto> AvailableTeachers = response.Content.ReadAsAsync<IEnumerable<TeacherDto>>().Result;
 
@@ -101,11 +101,11 @@ namespace Humber_Timesheet_Tracker.Controllers
 
         //POST: Course/Associate/{id}
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         public ActionResult Associate(int id, int TeacherId)
         {
-            
-           //call our api to associate course with teacher
+            //GetApplicationCookie();
+            //call our api to associate course with teacher
             string url = "CourseData/AssociateCourseWithTeacher/" + id + "/" + TeacherId;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
@@ -116,10 +116,10 @@ namespace Humber_Timesheet_Tracker.Controllers
 
         //Get: Course/UnAssociate/{id}?TeacherId={TeacherId}
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public ActionResult UnAssociate(int id, int TeacherId)
         {
-            
+            //GetApplicationCookie();
             //call our api to associate course with teacher
             string url = "CourseData/UnAssociateCourseWithTeacher/" + id + "/" + TeacherId;
             HttpContent content = new StringContent("");
@@ -148,6 +148,7 @@ namespace Humber_Timesheet_Tracker.Controllers
         [Authorize]
         public ActionResult Create(Course course)
         {
+            
             //curl -d @course.json -H "Content-Type:application/json" https://localhost:44375/api/CourseData/AddCourse
             string url = "CourseData/AddCourse";
 

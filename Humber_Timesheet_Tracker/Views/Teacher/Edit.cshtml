@@ -23,7 +23,7 @@
     <div class="card-body">
 
 
-        <form action="/Teacher/Update/@Model.TeacherId" method="Post">
+        <form action="/Teacher/Update/@Model.TeacherId" method="Post" enctype="multipart/form-data">
             <fieldset>
                 <div class="form-group" style="display:none;">
                     <input type="text" name="TeacherId" value="@Model.TeacherId" required />
@@ -35,6 +35,9 @@
                 <div class="form-group">
                     <label for="TeacherLastName" class="form-label mt-4">Last Name</label>
                     <input type="text" class="form-control" id="TeacherLastName" name="TeacherLastName" value="@Model.TeacherLastName" required />
+                </div>
+                <div class="form-group mt-4">
+                    <input type="file" name="TeacherPic" />
                 </div>
                 <div class="form-group mt-4">
                     <input type="submit" value="Update Teacher" class="btn btn-outline-primary" />

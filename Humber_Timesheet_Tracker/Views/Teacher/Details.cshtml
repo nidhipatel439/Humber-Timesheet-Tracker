@@ -16,6 +16,14 @@
             <a class="text-decoration-none" href="/Teacher/Edit/@Model.SelectedTeacher.TeacherId"> @Model.SelectedTeacher.TeacherLastName,@Model.SelectedTeacher.TeacherFirstName</a>
         </h2>
         <h6 class="card-subtitle">Teacher</h6>
+        @{
+            string imageurl = "/Content/Images/Teachers/default.jpg";
+            if (Model.SelectedTeacher.TeacherHasPic)
+            {
+                imageurl = "/Content/Images/Teachers/" + Model.SelectedTeacher.TeacherId + "." + Model.SelectedTeacher.PicExtension;
+            }
+        }
+        <div><img style="display:block;width:100px" alt="@Model.SelectedTeacher.TeacherFirstName" src="@imageurl" /></div>
     </div>
 
 

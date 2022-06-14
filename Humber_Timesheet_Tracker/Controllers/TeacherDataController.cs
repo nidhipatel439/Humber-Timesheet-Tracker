@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Humber_Timesheet_Tracker.Models;
@@ -39,7 +41,9 @@ namespace Humber_Timesheet_Tracker.Controllers
             {
                 TeacherId = t.TeacherId,
                 TeacherFirstName = t.TeacherFirstName,
-                TeacherLastName = t.TeacherLastName
+                TeacherLastName = t.TeacherLastName,
+                TeacherHasPic = t.TeacherHasPic,
+                PicExtension = t.PicExtension
             }));
 
             return Ok(TeacherDtos);
@@ -88,11 +92,11 @@ namespace Humber_Timesheet_Tracker.Controllers
         /// </returns>
         /// <param name="id">course Primary Key</param>
         /// <example>
-        /// GET: api/TeacherData/ListTeachersNotCaringForCourse/1
+        /// GET: api/TeacherData/ListTeachersNotTeachingCourse/1
         /// </example>
         [HttpGet]
         [ResponseType(typeof(TeacherDto))]
-        public IHttpActionResult ListTeachersNotCaringForCourse(int id)
+        public IHttpActionResult ListTeachersNotTeachingCourse(int id)
         {
             List<Teacher> Teachers = db.Teachers.Where(
                 t => !t.Courses.Any(
@@ -133,7 +137,9 @@ namespace Humber_Timesheet_Tracker.Controllers
             {
                 TeacherId = Teacher.TeacherId,
                 TeacherFirstName = Teacher.TeacherFirstName,
-                TeacherLastName = Teacher.TeacherLastName
+                TeacherLastName = Teacher.TeacherLastName,
+                TeacherHasPic = Teacher.TeacherHasPic,
+                PicExtension = Teacher.PicExtension,
             };
             if (Teacher == null)
             {
@@ -144,7 +150,80 @@ namespace Humber_Timesheet_Tracker.Controllers
         }
 
 
+        /// <summary>
+        /// Receives teacher picture data, uploads it to the webserver and updates the teacher's HasPic option
+        /// </summary>
+        /// <param name="id">the teacher id</param>
+        /// <returns>status code 200 if successful.</returns>
+        /// <example>
+        /// curl -F teacherpic=@file.jpg "https://localhost:xx/api/teacherdata/uploadteacherpic/5"
+        /// </example>
 
+        [HttpPost]
+        public IHttpActionResult UploadTeacherPic(int id)
+        {
+
+            bool haspic = false;
+            string picextension;
+            if (Request.Content.IsMimeMultipartContent())
+            {
+
+                int numfiles = HttpContext.Current.Request.Files.Count;
+
+                //Check if a file is posted
+                if (numfiles == 1 && HttpContext.Current.Request.Files[0] != null)
+                {
+                    var TeacherPic = HttpContext.Current.Request.Files[0];
+                    //Check if the file is empty
+                    if (TeacherPic.ContentLength > 0)
+                    {
+                        var valtypes = new[] { "jpeg", "jpg", "png", "gif" };
+                        var extension = Path.GetExtension(TeacherPic.FileName).Substring(1);
+                        //Check the extension of the file
+                        if (valtypes.Contains(extension))
+                        {
+                            try
+                            {
+                                //file name is the id of the image
+                                string fn = id + "." + extension;
+
+                                string path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Images/Teachers/"), fn);
+
+                                //save the file
+                                TeacherPic.SaveAs(path);
+
+                                //if these are all successful then we can set these fields
+                                haspic = true;
+                                picextension = extension;
+
+                                //Update the teacher haspic and picextension fields in the database
+                                Teacher Selectedteacher = db.Teachers.Find(id);
+                                Selectedteacher.TeacherHasPic = haspic;
+                                Selectedteacher.PicExtension = extension;
+                                db.Entry(Selectedteacher).State = EntityState.Modified;
+
+                                db.SaveChanges();
+
+                            }
+                            catch (Exception)
+                            {
+                                return BadRequest();
+                            }
+                        }
+                    }
+
+                }
+
+                return Ok();
+            }
+            else
+            {
+                //not multipart form data
+                return BadRequest();
+
+            }
+
+        }
 
         /// <summary>
         /// Updates a particular teacher in the system with POST Data input
@@ -177,6 +256,9 @@ namespace Humber_Timesheet_Tracker.Controllers
             }
 
             db.Entry(Teacher).State = EntityState.Modified;
+            // Picture update is handled by another method
+            db.Entry(Teacher).Property(a => a.TeacherHasPic).IsModified = false;
+            db.Entry(Teacher).Property(a => a.PicExtension).IsModified = false;
 
             try
             {
