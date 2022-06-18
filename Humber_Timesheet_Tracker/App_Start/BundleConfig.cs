@@ -24,6 +24,7 @@ namespace Humber_Timesheet_Tracker
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap_lux.min.css",
+                      //"~/Content/bootstrap.css",
                       "~/Content/site.css"));
         }
     }

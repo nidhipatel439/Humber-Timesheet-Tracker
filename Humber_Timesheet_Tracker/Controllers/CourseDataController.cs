@@ -127,7 +127,7 @@ namespace Humber_Timesheet_Tracker.Controllers
         /// </example>
         [HttpPost]
         [Route("api/CourseData/AssociateCourseWithTeacher/{courseid}/{teacherid}")]
-        //[Authorize]
+        [Authorize]
         public IHttpActionResult AssociateCourseWithTeacher(int courseid, int teacherid)
         {
 
@@ -161,7 +161,7 @@ namespace Humber_Timesheet_Tracker.Controllers
         /// </example>
         [HttpPost]
         [Route("api/CourseData/UnAssociateCourseWithTeacher/{courseid}/{teacherid}")]
-        //[Authorize]
+        [Authorize]
         public IHttpActionResult UnAssociateCourseWithTeacher(int courseid, int teacherid)
         {
 
